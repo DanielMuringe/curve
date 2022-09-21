@@ -1,8 +1,9 @@
 from numpy.linalg import solve as np_linalg_solve
 from numpy import array as np_array
-from string import join as str_join
+from str_funcs import join as joinstr
+import matplotlib.pyplot as plt
 
-class plotted_curve():
+class curve():
     def __init__(self,points):
         self.points = np_array(points)
     
@@ -25,6 +26,7 @@ class plotted_curve():
         X = np_linalg_solve(A,B)
 
         return X
+ 
     
     def __str__(self):
         superscript = []
@@ -43,11 +45,25 @@ class plotted_curve():
 
             i += 1
             
-        superscript = str_join(superscript)
-        line        = str_join(line)
+        superscript = joinstr(superscript)
+        line        = joinstr(line)
         
         eq_str = f'''
 {superscript}
 {line}'''
         return eq_str
+
+    def graph(self):
+        x_values = map(lambda point: point[0],self.points)
+        y_values = map(lambda point: point[1],self.points)
+
+        x_values = list(x_values)
+        y_values = list(y_values)
+
+        plt.plot(x_values,y_values)
+        plt.xlabel('x-axis')
+        plt.ylabel('y-axis')
+        plt.title('Plotted Curve')
+        plt.show()
+
 
