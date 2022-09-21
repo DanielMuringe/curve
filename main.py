@@ -1,6 +1,6 @@
 from numpy.linalg import solve as np_linalg_solve
 from numpy import array as np_array
-from ..essentials.string import join as str_join
+from string import join as str_join
 
 class plotted_curve():
     def __init__(self,points):
@@ -37,8 +37,6 @@ class plotted_curve():
             plus_space  = '' if cond else ' '
             plus        = '' if cond else '+'
             const_space = ' '*(len(str(constant)))
-
-            print(f'{constant}->{cond}')
             
             superscript.append(f'{plus_space}{const_space} {i}')
             line.append(f'{plus}{constant}x ')
